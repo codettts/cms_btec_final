@@ -82,8 +82,8 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		UserEntity userEntity = new UserEntity();
 		if(dto.getUsername() != null) {
-			UserEntity oldNew = userRepository.findOne(dto.getUsername());
-			userEntity = userConverter.toEntity(oldNew,dto);
+			UserEntity oldUser = userRepository.findOne(dto.getUsername());
+			userEntity = userConverter.toEntity(oldUser,dto);
 		}else {
 			userEntity = userConverter.toEntity(dto);
 		}

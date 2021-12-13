@@ -30,14 +30,18 @@
 					<div class="nav-tab">
 						<c:url var="editAccURL" value="/admin/user-manage/edit" />
 						<button class="btn tablink first-tab"
-							onclick="openTab(event,'User-Overview')">Account Information</button>
+							onclick="openTab(event,'User-Overview')">
+							<a href='${usermanageURL}'>Account Information</a></button>
+							<button class="btn tablink first-tab"
+							onclick="openTab(event,'Create-Account')">
+							<a href='${usermanageURL}'>Create Account</a></button>
 					</div>
-					<div id="User-Overview" class="tab-content user-overview">
+					<div id="Create-Account" class="tab-content create-account">
 						<form:form class="form-horizontal" role="form" id="formSubmit"
 							modelAttribute="model">
 							<div class="form-group">
 								<label for="exampleFormControlInput1">UserName</label>
-								<form:input path="username" cssClass="form-control" />
+								<form:input  path="username"  cssClass="form-control" />
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Password</label>

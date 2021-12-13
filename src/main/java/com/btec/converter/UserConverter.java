@@ -21,6 +21,7 @@ public class UserConverter {
 
 	public UserEntity toEntity(UserDTO dto) {
 		UserEntity result = new UserEntity();
+		result.setUsername(dto.getUsername());
 		result.setPassword(dto.getPassword());
 		result.setFullName(dto.getFullName());
 		result.setDob(dto.getDob());

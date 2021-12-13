@@ -27,7 +27,7 @@ public class AccountController{
 	private MessageUtil messageUtil;
 
 	@RequestMapping(value = "/admin/user-manage", method = RequestMethod.GET)
-	public ModelAndView showList(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+	public ModelAndView showList(@RequestParam("page") int page, @RequestParam("limit") int limit, HttpServletRequest request) {
 		UserDTO model = new UserDTO();
 		model.setPage(page);
 		model.setLimit(limit);
@@ -36,15 +36,24 @@ public class AccountController{
 		model.setListResult(userService.findAll(pageable));
 		model.setTotalItem(userService.getTotalItem());
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getLimit()));
+		if (request.getParameter("message") != null) {
+			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));
+			mav.addObject("message", message.get("message"));
+			mav.addObject("alert", message.get("alert"));
+		}
 		mav.addObject("model", model);
 		return mav;
 	}
 	@RequestMapping(value = "/admin/user-manage/edit", method = RequestMethod.GET)
 	public ModelAndView editNew(@RequestParam(value = "username", required = false) String username, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("admin/account/editAcc");
+		ModelAndView mav;
 		UserDTO model = new UserDTO();
 		if (username != null) {
+			mav = new ModelAndView("admin/account/editAcc");
 			model = userService.findOne(username);
+		}
+		else {
+			mav = new ModelAndView("admin/account/addAcc");
 		}
 		if (request.getParameter("message") != null) {
 			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));

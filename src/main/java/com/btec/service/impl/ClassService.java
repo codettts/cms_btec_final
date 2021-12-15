@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.btec.constant.SystemConstant;
 import com.btec.converter.AsmConverter;
@@ -79,22 +81,24 @@ public class ClassService implements IClassService {
 	public ClassDTO save(ClassDTO dto) {
 		SubjectEntity subjectclass = subjectRepository.findOne(dto.getSubjectId());
 		ContentEntity contentclass = contentRepository.findOne(dto.getContentId());
-		List<UserEntity> userclass = userRepository.findAllByUsernameAndStatus(dto.getUsername(), SystemConstant.ACTIVE_STATUS);
+		UserEntity user = userRepository.findOneByUsernameAndStatus(dto.getUsername(), SystemConstant.ACTIVE_STATUS);
 		ClassEntity classEntity = new ClassEntity();
+		Set<ClassEntity> classes = user.getClassuser();
 		if (dto.getClassId() != null) {
 			ClassEntity oldClass = classRepository.findOne(dto.getClassId());
 			oldClass.setSubject(subjectclass);
-			oldClass.setUserclass(userclass);
 			oldClass.setContent(contentclass);
 			classEntity = classConverter.toEntity(oldClass,dto);
 		}
 		else
 		{
 			classEntity = classConverter.toEntity(dto);
-			classEntity.setUserclass(userclass);
-			classEntity.setContent(contentclass);
 			classEntity.setSubject(subjectclass);
+			classEntity.setContent(contentclass);
+			classes.add(classEntity);
 		}
+		user.setClassuser(classes);
+		userRepository.save(user);
 		return classConverter.toDto(classRepository.save(classEntity));
 	}
 	@Override
@@ -107,5 +111,19 @@ public class ClassService implements IClassService {
 		}
 		return asmmodel;
 	}
+	
+	@Override
+	@Transactional
+	public void delete(long[] classId) {
+		// TODO Auto-generated method stub
+		for (long classid: classId) {
+			ClassEntity classEntity = classRepository.findByClassId(classid);
+			classEntity.getUserclass().forEach(user -> user.getClassuser().remove(classEntity));
+			userRepository.save(classEntity.getUserclass());
+			classRepository.delete(classEntity);
+		}
+	}
+	
+	
 
 }

@@ -60,7 +60,7 @@ public class AsmController {
 	}
 
 	@RequestMapping(value = "/trainer/classoverview/edit", method = RequestMethod.GET)
-	public ModelAndView createEditAsm(@RequestParam(value = "asmId", required = false) Long asmId, HttpServletRequest request) {
+	public ModelAndView createEditAsm(@RequestParam(value = "classId") Long classId, @RequestParam(value = "asmId", required = false) Long asmId, HttpServletRequest request) {
 		ModelAndView mav;
 		SubAsmDTO subasm = new SubAsmDTO();
 		AsmDTO model = new AsmDTO();
@@ -68,7 +68,7 @@ public class AsmController {
 		if (asmId != null) {
 			mav = new ModelAndView("trainer/class/contentdetail");
 			model = asmService.findById(asmId);
-			subasm.setListResult(subAsmService.findAll());
+			subasm.setListResult(subAsmService.findByAsmId(asmId));
 			mav.addObject("subasmlist", subasm);
 		}
 		else
@@ -80,7 +80,7 @@ public class AsmController {
 			mav.addObject("message", message.get("message"));
 			mav.addObject("alert", message.get("alert"));
 		}
-		mav.addObject("classlist", classService.findAll());
+		mav.addObject("classmodel", classService.findOne(classId));
 		mav.addObject("model", model);
 		return mav;
 	}

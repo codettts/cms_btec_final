@@ -37,7 +37,7 @@ public class HomeController {
 		ClassDTO model = new ClassDTO();
 		model.setPage(page);
 		model.setLimit(limit);
-		ModelAndView mav = new ModelAndView("trainer/manageclass");
+		ModelAndView mav = new ModelAndView("staff/manageclass");
 		Pageable pageable = new PageRequest(page - 1, limit);
 		model.setListResult(classService.findAll(pageable));
 		model.setTotalItem(classService.getTotalItem());

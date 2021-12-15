@@ -3,7 +3,9 @@ package com.btec.entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,16 +46,16 @@ public class UserEntity extends BaseEntity {
 	
 	@ManyToMany
 	@JoinTable(name = "user_class", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "classId"))
-	private List<ClassEntity> classuser = new ArrayList<>();
+	private Set<ClassEntity> classuser = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user")
 	private List<SubasmEntity> subasmuser = new ArrayList<>();
-		
-	public List<ClassEntity> getClassuser() {
+	
+	public Set<ClassEntity> getClassuser() {
 		return classuser;
 	}
 
-	public void setClassuser(List<ClassEntity> classuser) {
+	public void setClassuser(Set<ClassEntity> classuser) {
 		this.classuser = classuser;
 	}
 

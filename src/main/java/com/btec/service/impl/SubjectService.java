@@ -45,7 +45,7 @@ public class SubjectService implements ISubjectService{
 	@Override
 	public List<SubjectDTO> findAllSub(Pageable pageable) {
 		List<SubjectDTO> model = new ArrayList<>();
-		List<SubjectEntity> entities = subjectRepository.findAll(pageable).g; 
+		List<SubjectEntity> entities = subjectRepository.findAll(); 
 		return model;
 	}
 

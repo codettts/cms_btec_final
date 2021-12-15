@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
+<form action="<c:url value='/staff/manageclass'/>" method="get" id="formSubmit">
 <div id="content">
 	<div id="breadcrumbs">
 		<ul class="breadcrumb">
@@ -21,7 +22,7 @@
 						<img src="<c:url value='/template/assets/images/p3.jpg' />" alt="" class="place-img" />
 						<div class="place-body">
 							<h3 class="place-heading">${classlist.className}</h3>
-							<c:url var="classoverviewURL" value='/trainer/manageclass/class-overview?page=1&limit=4'>
+							<c:url var="classoverviewURL" value='/staff/manageclass/class-detail'>
 								<c:param name="classId" value="${classlist.classId}"/>
 							</c:url>
 							<a href="${classoverviewURL}"
@@ -31,6 +32,8 @@
 					</c:forEach>
 				</div>
 				<ul class="pagination" id="pagination"></ul>
+				<input type="hidden" value="" id="page" name="page"/>
+				<input type="hidden" value="" id="limit" name="limit"/>
 			</div>
 		</div>
 		<div id="sidebar">
@@ -107,3 +110,22 @@
 		</div>
 	</div>
 </div>
+</form>
+<script>
+var totalPages = ${model.totalPage};
+var currentPage = ${model.page};
+$(function() {
+	window.pagObj = $('#pagination').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : 3,
+		startPage : currentPage,
+		onPageClick : function(event, page) {
+			if (currentPage != page) {
+				$('#limit').val(6);
+				$('#page').val(page);
+				$('#formSubmit').submit();
+			}
+		}
+	});
+});
+</script>

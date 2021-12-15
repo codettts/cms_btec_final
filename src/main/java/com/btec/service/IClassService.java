@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 
 import com.btec.dto.AsmDTO;
 import com.btec.dto.ClassDTO;
-import com.btec.entity.AsmEntity;
 
 public interface IClassService {
 	List<ClassDTO> findAll(Pageable pageable);
@@ -16,4 +15,5 @@ public interface IClassService {
 	Map<Long, String> findAll();
 	ClassDTO findOne(Long classId);
 	ClassDTO save(ClassDTO dto);
+	void delete(long[] classId);
 }

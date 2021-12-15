@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="contentdetailURL" value="/trainer/classoverview/edit"/>
-<c:url var="classoverviewtabURL" value="/trainer/manageclass/class-overview?page=1&limit=4"/>
+<c:url var="classoverviewtabURL" value="/trainer/manageclass/class-overview?classId=${classmodel.classId}page=1&limit=4"/>
 <c:url var="manageclassURL" value="/trainer/manageclass?page=1&limit=4"/>
 <c:url var="homeURL" value="/trainer/home"/>
 <c:url var="asmAPI" value="/api/asm"/>
@@ -80,9 +80,8 @@
 								<h4>Limit Item</h4>
 								<form:input cssClass="input-info edit-input" path="limitItem" />
 								<h4>Class Name</h4>
-								<form:select cssClass="input-info edit-input" path="classId">
-									<form:options items="${classlist}" />
-								</form:select>
+								<input type="hidden" id="classId" name="classId" value="${classmodel.classId}">
+								<input class="input-info edit-input" id="className" name="className" value="${classmodel.className}" disabled>
 								<br>
 								<form:hidden path="asmId" id="asmId"/>
 								<button type="button" id="btnAddOrUpdateAsm" title="Edit"
@@ -305,10 +304,10 @@
 	            contentType: 'application/json',
 	            data: JSON.stringify(data),
 	            success: function (result) {
-	                window.location.href = "${classoverviewURL}?page=1&limit=4&message=delete_success";
+	                window.location.href = "${classoverviewURL}?classId="+result.classId+"page=1&limit=4&message=delete_success";
 	            },
 	            error: function (error) {
-	            	window.location.href = "${classoverviewURL}?page=1&limit=4&message=error_system";
+	            	window.location.href = "${classoverviewURL}?classId="+result.classId+"page=1&limit=4&message=error_system";
 	            }
 	        });
 	    }

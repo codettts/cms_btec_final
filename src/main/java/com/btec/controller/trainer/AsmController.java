@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.btec.dto.AsmDTO;
 import com.btec.dto.ClassDTO;
 import com.btec.dto.SubAsmDTO;
+import com.btec.dto.UserDTO;
 import com.btec.service.IAsmService;
 import com.btec.service.IClassService;
 import com.btec.service.ISubAsmService;
@@ -110,6 +111,16 @@ public class AsmController {
 			mav.addObject("alert", message.get("alert"));
 		}
 		mav.addObject("subasminfo", modelsubasm);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/trainer/manage-trainee")
+	public ModelAndView manageTrainee(@RequestParam (value = "classId") Long classId, @RequestParam (value = "username") String username, HttpServletRequest request) {
+		UserDTO usermodel = new UserDTO();
+		usermodel.setListResult(classService.listTraineeOfClass(classId, username));
+		ModelAndView mav = new ModelAndView("trainer/class/mngtrainee");
+		mav.addObject("userList", usermodel);
+		mav.addObject("classinfo", classService.findOne(classId));
 		return mav;
 	}
 }

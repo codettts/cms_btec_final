@@ -14,15 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.btec.constant.SystemConstant;
 import com.btec.converter.AsmConverter;
 import com.btec.converter.ClassConverter;
+import com.btec.converter.UserConverter;
 import com.btec.dto.AsmDTO;
 import com.btec.dto.ClassDTO;
+import com.btec.dto.UserDTO;
 import com.btec.entity.AsmEntity;
 import com.btec.entity.ClassEntity;
 import com.btec.entity.ContentEntity;
+import com.btec.entity.RoleEntity;
 import com.btec.entity.SubjectEntity;
 import com.btec.entity.UserEntity;
 import com.btec.repository.ClassRepository;
 import com.btec.repository.ContentRepository;
+import com.btec.repository.RoleRepository;
 import com.btec.repository.SubjectRepository;
 import com.btec.repository.UserRepository;
 import com.btec.service.IClassService;
@@ -45,6 +49,12 @@ public class ClassService implements IClassService {
 	
 	@Autowired 
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UserConverter userConverter;
 	
 	@Autowired
 	private ClassConverter classConverter;
@@ -123,6 +133,31 @@ public class ClassService implements IClassService {
 			classRepository.delete(classEntity);
 		}
 	}
+	@Override
+	public List<UserDTO> listTraineeOfClass(Long classId, String username) {
+		Set<UserEntity> usersEntity = classRepository.findOne(classId).getUserclass();
+		List<UserDTO> usersDTO = new ArrayList<>();
+		Long roleId = 2L;
+		RoleEntity trainerrole = roleRepository.findOne(roleId);
+		for (UserEntity users: usersEntity) {
+			if (!(users.getRole() == "trainer")) {
+				UserDTO userDTO = userConverter.toDto(users);
+				usersDTO.add(userDTO);
+			}
+		}
+		return usersDTO;
+	}
+	@Override
+	public void removeUser(String username, Long classId) {
+		// TODO Auto-generated method stub
+		UserEntity userEntity = userRepository.findOne(username);
+		Set<UserEntity> users = classRepository.findOne(classId).getUserclass();
+		ClassEntity classEntity = classRepository.findOne(classId);
+		Set<ClassEntity> classes = userRepository.findOne(username).getClassuser();
+		classes.remove(classEntity);
+		users.remove(userEntity);
+	}
+	
 	
 	
 

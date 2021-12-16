@@ -30,13 +30,25 @@ public class UserEntity extends BaseEntity {
 
 	@Column(name = "fullName")
 	private String fullName;
-
+	
+	@Column(name = "gender", columnDefinition="char(1)")
+	private String gender;
+	
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "dob")
 	private Date dob;
+	
+	@Column(name = "country")
+	private String country;
 
+	@Column(name = "role")
+	private String role;
+	
+	@Column(name = "avatar")
+	private String avatar;
+	
 	@Column(name = "status")
 	private Integer status;
 
@@ -129,6 +141,38 @@ public class UserEntity extends BaseEntity {
 
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 }

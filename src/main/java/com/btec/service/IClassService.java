@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.btec.dto.AsmDTO;
 import com.btec.dto.ClassDTO;
+import com.btec.dto.UserDTO;
 
 public interface IClassService {
 	List<ClassDTO> findAll(Pageable pageable);
@@ -16,4 +17,6 @@ public interface IClassService {
 	ClassDTO findOne(Long classId);
 	ClassDTO save(ClassDTO dto);
 	void delete(long[] classId);
+	List<UserDTO> listTraineeOfClass(Long classId, String username);
+	void removeUser(String username, Long classId);
 }

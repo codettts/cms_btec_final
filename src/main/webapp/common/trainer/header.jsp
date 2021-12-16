@@ -5,7 +5,7 @@
 <div id="container">
 	<div id="top">
 		<div class="header-logo">
-			<a href="trainer-index.html"><img class="img-logo"
+			<a href="/trainer/home"><img class="img-logo"
 				src="<c:url value='/template/assets/images/logo.png' />" alt="" /></a>
 		</div>
 		<div class="header-user">
@@ -23,9 +23,7 @@
 							alt="" /> <span class="btn-user-element"><%=SecurityUtils.getPrincipal().getFullName()%></span> <i
 							class="fas fa-chevron-down btn-user-element"></i>
 					</button>
-					<c:url var="updateProfileURL" value="/trainer/update-profile">
-						<c:param name="username" value="<%=SecurityUtils.getPrincipal().getUsername()%>"/>
-					</c:url>
+					<c:url var="updateProfileURL" value="<%=SecurityUtils.getPrincipal().getUsername()%>"/>
 					<div id="drop" class="header-sub-nav">
 						<a href="${updateProfileURL}"><i class="fas fa-user-cog"></i>
 							<span>Settings</span></a> <a href="<c:url value='/logout'/>"><i

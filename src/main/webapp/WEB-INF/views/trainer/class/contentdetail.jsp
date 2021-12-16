@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="contentdetailURL" value="/trainer/classoverview/edit"/>
-<c:url var="classoverviewtabURL" value="/trainer/manageclass/class-overview?classId=${classmodel.classId}page=1&limit=4"/>
+<c:url var="classoverviewtabURL" value="/trainer/manageclass/class-overview?classId=${classmodel.classId}&page=1&limit=4"/>
 <c:url var="manageclassURL" value="/trainer/manageclass?page=1&limit=4"/>
 <c:url var="homeURL" value="/trainer/home"/>
 <c:url var="asmAPI" value="/api/asm"/>
@@ -269,10 +269,10 @@
 	            data: JSON.stringify(data),
 	            dataType: 'json',
 	            success: function (result) {
-	            	window.location.href = "${contentdetailURL}?asmId="+result.asmId+"&message=update_success";
+	            	window.location.href = "${contentdetailURL}?classId="+result.classId+"&asmId="+result.asmId+"&message=update_success";
 	            },
 	            error: function (error) {
-	            	window.location.href = "${contentdetailURL}?asmId="+result.asmId+"&message=error_system";
+	            	window.location.href = "${contentdetailURL}?classId="+result.classId+"&asmId="+result.asmId+"&message=error_system";
 	            }
 	        });
 		}

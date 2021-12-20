@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 	<%@include file="/common/taglib.jsp"%>
 <c:url var="classAPI" value="/api/class"/>
-<c:url var="homeURL" value="/staff/home"/>
-<c:url var="staffmanageclassURL" value="/staff/manageclass?page=1&limit=4"/>
-<c:url var="staffaddclassURL" value="/staff/edit"/>
+<c:url var="staffmanageclassURL" value="/staff/manageclass"/>
+<c:url var="classdetailURL" value="/staff/manageclass/class-detail"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +14,7 @@
 		<div id="breadcrumbs">
 			<ul class="breadcrumb">
 				<li><a href="${homeURL}">Home</a></li>
-				<li><a href="${staffmanageclassURL}">Manage Class</a></li>
+				<li><a href="${manageclassURL}">Manage Class</a></li>
 				<li>BHAF-1911-2.2</li>
 			</ul>
 		</div>
@@ -23,13 +22,18 @@
 			<div class="right-content">
 				<div class="nav-tab">
 					<c:url var="classoverviewtabURL"
-						value="/staff/edit">
+						value="/staff/manageclass/">
 						<c:param name="classId" value="${classlist.classId}"></c:param>
 						<c:param name="page" value="1"></c:param>
 						<c:param name="limit" value="4"></c:param>
 					</c:url>
-					<button class="btn tablink first-tab">
-						Create New Class
+					<button class="btn tablink first-tab" onclick="openTab(event,'content-overview')">
+						<c:if test="${not empty classmodel.classId }">
+							Update Class
+						</c:if>
+						<c:if test="${empty classmodel.classId}">
+							Create New Class
+						</c:if>
 					</button>
 				</div>
 				<c:if test="${not empty message}">
@@ -52,16 +56,31 @@
 							<form:options items="${contentmodel}"/>
 						</form:select>
 						<h4>Select Trainer</h4>
-						<form:select path="username" cssClass="input-info">
-							<form:option value="" label="---Pick a Trainer---" />
-							<form:options items="${usermodel}"/>
-						</form:select>
+						<c:if test="${empty classmodel.classId}">
+							<form:select path="username" cssClass="input-info">
+								<form:option value="" label="---Pick a Trainer---" />
+								<form:options items="${usermodel}"/>
+							</form:select>
+						</c:if>
+						<c:if test="${not empty classmodel.classId}">
+							<form:select path="username" cssClass="input-info">
+								<form:options items="${usermodel}"/>
+							</form:select>
+						</c:if>
 						<br/>
 						<form:hidden path="classId"/>
-						<button type="button" id="btnAddClass" class="btn btn-create-asm">Create
-						Class</button>
+						<c:if test="${not empty classmodel.classId}">
+							<button type="button" id="btnAddClass" class="btn btn-create-asm">Update
+							Class</button>
+							<button style="background-color: #D11A2A; color : #fff;" id="btnDeleteAsm" class="btn btn-create-asm" type ="button" onclick="warningBeforeDelete()">
+							<i class="fas fa-trash"></i> Delete
+						</button>
+						</c:if>
+						<c:if test="${empty classmodel.classId}">
+							<button type="button" id="btnAddClass" class="btn btn-create-asm">Create
+							Class</button>
+						</c:if>
 					</form:form>
-					
 				</div>
 			</div>
 			<div id="sidebar">
@@ -185,6 +204,41 @@
 				}
 			});
 		}
+		
+		function warningBeforeDelete() {
+			swal({
+			  title: "Delete Confirm",
+			  text: "Are you sure you want to delete? This action cannot be undone",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonClass: "btn-success",
+			  cancelButtonClass: "btn-danger",
+			  confirmButtonText: "Confirm",
+			  cancelButtonText: "Cancel",
+			}).then(function(isConfirm) {
+			  if (isConfirm) {
+				  	var classId = $('#classId').map(function () {
+			            return $(this).val();
+			        }).get();
+					delClass(classId);
+			  }
+			});
+		} 
+		
+		function delClass(data) {
+	        $.ajax({
+	            url: '${classAPI}',
+	            type: 'DELETE',
+	            contentType: 'application/json',
+	            data: JSON.stringify(data),
+	            success: function (result) {
+	                window.location.href = "${staffmanageclassURL}?page=1&limit=6&message=delete_success";
+	            },
+	            error: function (error) {
+	            	window.location.href = "${staffmanageclassURL}?page=1&limit=6&message=error_system";
+	            }
+	        });
+	    }
 	</script>
 </body>
 </html>

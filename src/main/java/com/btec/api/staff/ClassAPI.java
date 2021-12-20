@@ -1,6 +1,7 @@
 package com.btec.api.staff;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,5 +24,9 @@ public class ClassAPI {
 	@PutMapping("/api/class")
 	public ClassDTO editClass(@RequestBody ClassDTO editclassDTO) {
 		return classService.save(editclassDTO);
+	}
+	@DeleteMapping("/api/class")
+	public void deleteClass(@RequestBody long[] classIds) {
+		classService.delete(classIds);
 	}
 }

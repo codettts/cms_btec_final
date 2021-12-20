@@ -15,22 +15,30 @@
 					onclick="openTab(event,'Class-Overview')">My Class</button>
 			</div>
 			<div id="Class-Overview" class="tab-content class-overview">
-				<div class="row place-list">
-				<c:forEach var="classlist" items="${model.listResult}">
-					<div class="col col-two s-col-full mt-16">
-						<img src="<c:url value='/template/assets/images/p3.jpg' />" alt="" class="place-img" />
-						<div class="place-body">
-							<h3 class="place-heading">${classlist.className}</h3>
-							<c:url var="classoverviewURL" value='/trainer/manageclass/class-overview?page=1&limit=4'>
-								<c:param name="classId" value="${classlist.classId}"/>
-							</c:url>
-							<a href="${classoverviewURL}"
-								class="place-buy-btn js-buy-ticket s-full-width">View</a>
-						</div>
+				<form action="<c:url value='/staff/manageclass'/>" id="formSubmit"
+					method="get">
+					<div class="row place-list">
+						<c:forEach var="classlist" items="${model.listResult}">
+							<div class="col col-two s-col-full mt-16">
+								<img src="<c:url value='/template/assets/images/p3.jpg' />"
+									alt="" class="place-img" />
+								<div class="place-body">
+									<h3 class="place-heading">${classlist.className}</h3>
+									<c:url var="classoverviewURL" value='/staff/edit'>
+										<c:param name="classId" value="${classlist.classId}" />
+									</c:url>
+									<a href="${classoverviewURL}"
+										class="place-buy-btn js-buy-ticket s-full-width">View</a>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
-					</c:forEach>
-				</div>
-				<ul class="pagination" id="pagination"></ul>
+					<div class="pagination">
+						 <ul class="pagination" id="pagination"></ul>
+						<input type="hidden" value="" id="page" name="page" /> 
+						<input type="hidden" value="" id="limit" name="limit" />
+					</div>
+				</form>
 			</div>
 		</div>
 		<div id="sidebar">
@@ -107,3 +115,21 @@
 		</div>
 	</div>
 </div>
+<script>
+var totalPages = ${model.totalPage};
+var currentPage = ${model.page};
+$(function() {
+	window.pagObj = $('#pagination').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : 3,
+		startPage : currentPage,
+		onPageClick : function(event, page) {
+			if (currentPage != page) {
+				$('#limit').val(4);
+				$('#page').val(page);
+				$('#formSubmit').submit();
+			}
+		}
+	});
+});
+</script>

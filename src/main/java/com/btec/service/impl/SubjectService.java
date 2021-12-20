@@ -45,14 +45,13 @@ public class SubjectService implements ISubjectService{
 	@Override
 	public List<SubjectDTO> findAllSub(Pageable pageable) {
 		List<SubjectDTO> model = new ArrayList<>();
-		List<SubjectEntity> entities = subjectRepository.findAll(pageable).g; 
+		List<SubjectEntity> entities = subjectRepository.findAll(); 
 		return model;
 	}
 
 	@Override
 	public int getTotalItem() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) subjectRepository.count();
 	}
 
 	@Override

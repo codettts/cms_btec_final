@@ -36,13 +36,16 @@ public class ClassController {
 	@Autowired
 	private IContentService contentService;
 	
-	@RequestMapping(value = "/staff/createclass", method = RequestMethod.GET)
+	@RequestMapping(value = "/staff/edit", method = RequestMethod.GET)
 	public ModelAndView addClass(@RequestParam(value = "classId", required = false) Long classId, HttpServletRequest request) {
 		ModelAndView mav;
 		ClassDTO classmodel = new ClassDTO();
-		mav = new ModelAndView("staff/addclass");
+		mav = new ModelAndView("staff/editClass");
 		if (classId != null) {
 			classmodel = classService.findOne(classId);
+		}
+		else {
+			mav = new ModelAndView("staff/addclass");
 		}
 		if (request.getParameter("message") != null) {
 			Map<String, String> message = messageUtil.getMessage(request.getParameter("message"));

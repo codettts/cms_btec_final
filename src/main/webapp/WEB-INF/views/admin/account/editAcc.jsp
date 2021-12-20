@@ -37,7 +37,7 @@
 							modelAttribute="model">
 							<div class="form-group">
 								<label for="exampleFormControlInput1">UserName</label>
-								<form:input path="username" cssClass="form-control" />
+								<form:input path="username" cssClass="form-control" readonly="readonly"/>
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Password</label>

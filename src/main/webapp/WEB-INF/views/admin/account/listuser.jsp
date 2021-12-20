@@ -14,6 +14,7 @@
 	<div id="main-content">
 		<div class="container-content">
 			<div class="table-wrapper">
+			<form action="<c:url value='/admin/user-manage'/>" id="formSubmit" method="get">
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
@@ -68,11 +69,12 @@
 						Showing <b>5</b> out of <b>10</b> entries
 					</div>
 					<div class="pagination">
-						 <ul id="pagination-demo" class="pagination-sm"></ul>
+						 <ul class="pagination" id="pagination"></ul>
 						<input type="hidden" value="" id="page" name="page" /> 
 						<input type="hidden" value="" id="limit" name="limit" />
 					</div>
 				</div>
+				</form>
 			</div>
 			<!-- Edit Modal HTML -->
 			<div id="editEmployeeModal" class="modal fade">
@@ -166,26 +168,20 @@
 	</div>
 </div>
 <script>
-	var totalPages = $
-	{
-		model.totalPage
-	};
-	var currentPage = $
-	{
-		model.page
-	};
-	$(function() {
-		window.pagObj = $('#pagination').twbsPagination({
-			totalPages : totalPages,
-			visiblePages : 10,
-			startPage : currentPage,
-			onPageClick : function(event, page) {
-				if (currentPage != page) {
-					$('#limit').val(2);
-					$('#page').val(page);
-					$('#formSubmit').submit();
-				}
+var totalPages = ${model.totalPage};
+var currentPage = ${model.page};
+$(function() {
+	window.pagObj = $('#pagination').twbsPagination({
+		totalPages : totalPages,
+		visiblePages : 3,
+		startPage : currentPage,
+		onPageClick : function(event, page) {
+			if (currentPage != page) {
+				$('#limit').val(6);
+				$('#page').val(page);
+				$('#formSubmit').submit();
 			}
-		});
+		}
 	});
+});
 </script>

@@ -3,15 +3,22 @@ package com.btec.service;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Pageable;
-
 import com.btec.dto.MajorDTO;
 
 public interface IMajorService {
 	Map<Long, String> findAll();
-	List<MajorDTO> findAll(Pageable pageable);
-	MajorDTO findById(long majorId);
-	MajorDTO save(MajorDTO dto);
-	void delete(long[] majorIds);
-	int getTotalItem();
+	
+	List<MajorDTO> findListAll();
+
+	MajorDTO create(MajorDTO dto);
+
+	MajorDTO update(MajorDTO dto);
+
+	boolean delete(Long id);
+
+	List<MajorDTO> searchByMajorName(String name);
+
+	List<MajorDTO> searchByMajorID(Long id);
+	
+	MajorDTO findById(Long id);
 }

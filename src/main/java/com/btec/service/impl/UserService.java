@@ -3,7 +3,8 @@ package com.btec.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Map;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +38,10 @@ public class UserService implements IUserService {
 		return userConverter.toDto(entities);
 
 	}
-
+	@Override
+	public List<UserDTO> findAll(){
+		return userRepository.findAll().stream().map(u->userConverter.toDto(u)).collect(Collectors.toList());
+	}
 	@Override
 	public Map<String, String> findAllTrainer() {
 		Long roleId = 2L;
@@ -77,22 +81,36 @@ public class UserService implements IUserService {
 	
 
 	@Override
-	@Transactional
 	public UserDTO save(UserDTO dto) {
 		// TODO Auto-generated method stub
-		UserEntity userEntity = new UserEntity();
-		if(dto.getUsername() != null) {
-			UserEntity oldUser = userRepository.findOne(dto.getUsername());
-			userEntity = userConverter.toEntity(oldUser,dto);
-		}else {
-			userEntity = userConverter.toEntity(dto);
-		}
-		return userConverter.toDto(userRepository.save(userEntity));
+//		UserEntity userEntity = new UserEntity();
+//		UserEntity oldUser = userRepository.findOne(dto.getUsername());
+//		if (oldUser != null) {
+//			userEntity = userConverter.toEntity(oldUser,dto);
+//		}
+//		else
+//		{
+//			userEntity = userConverter.toEntity(dto);
+//		}
+//		return userConverter.toDto(userRepository.save(userEntity));
+		/*
+		 * UserEntity userEntity = new UserEntity(); if(dto.getUsername() != null) {
+		 * UserEntity oldUser = userRepository.findOne(dto.getUsername()); userEntity =
+		 * userConverter.toEntity(oldUser,dto); }else { userEntity =
+		 * userConverter.toEntity(dto); } return
+		 * userConverter.toDto(userRepository.save(userEntity));
+		 */
+		
+		return userConverter.toDto(userRepository.save(userConverter.toEntity(dto)));
+	}
+	@Override
+	public boolean delete(String usernames) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 //	@Override
-//	@Transactional
-//	public void delete(String usernames) {
+//	public boolean delete(String usernames) {
 //		for (String username: usernames) {
 //			userRepository.delete(username);
 //		}

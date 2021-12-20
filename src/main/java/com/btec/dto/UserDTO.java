@@ -53,4 +53,10 @@ public class UserDTO extends AbstractDTO<UserDTO> {
 		RoleId = roleId;
 	}
 	private Long RoleId;
+	
+	@Override
+	public String toString() {
+		return "UserDTO [username=" + username + ", password=" + password + ", fullName=" + fullName + ", phoneNumber="
+				+ phoneNumber + ", email=" + email + ", dob=" + dob + ", RoleId=" + RoleId + "]";
+	}
 }

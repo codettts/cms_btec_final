@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
+<%@ page import="com.btec.util.SecurityUtils" %>
 <c:url var="manageclassURL" value="/trainer/manageclass?page=1&limit=4" />
 <c:url var="homeURL" value="/trainer/home" />
 <c:url var="editpassURL" value="/trainer/classoverview/editpass">
 	<c:param name="classId" value="${classinfo.classId}" />
+</c:url>
+<c:url var="mngtraineeURL" value="/trainer/manage-trainee">
+	<c:param name="classId" value="${classinfo.classId}"/>
+	<c:param name="username" value="<%=SecurityUtils.getPrincipal().getUsername()%>"/>
 </c:url>
 <!DOCTYPE html>
 <html>
@@ -42,7 +47,7 @@
 							<a href="${editpassURL}">Edit Code</a>
 						</button>
 						<button class="btn tablink"
-							onclick="openTab(event, 'Manage-Student')"><a href="${managestudentURL}">Manage
+							onclick="openTab(event, 'Manage-Student')"><a href="${mngtraineeURL}">Manage
 							Student</a></button>
 					</div>
 					<div id="Class-Overview" class="tab-content class-overview">

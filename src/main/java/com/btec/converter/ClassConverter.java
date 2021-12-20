@@ -16,6 +16,7 @@ public class ClassConverter {
 		result.setPassword(entity.getPassword());
 		result.setSubjectId(entity.getSubject().getSubjectId());
 		result.setContentId(entity.getContent().getContentId());
+		
 		return result;
 	}
 	

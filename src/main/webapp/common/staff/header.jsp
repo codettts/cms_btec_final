@@ -46,7 +46,7 @@
 	<!-- Start Navigation -->
 	<div id="navigation" class="topnav">
 		<ul id="nav">
-			<li><a href="<c:url value='/trainer/home'/>"><i
+			<li><a href="<c:url value='/staff/home'/>"><i
 					class="fas fa-home"></i> Home</a></li>
 			<li class="dropres" onclick="dropRes()"><a href="#"> <i
 					class="fas fa-house-user"></i> My Class <i
@@ -55,7 +55,7 @@
 				<ul class="subnav">
 					<li><a href="<c:url value='/staff/manageclass?page=1&limit=4'/>"><i
 							class="fas fa-graduation-cap"></i> Manage Class</a></li>
-					<li><a href="<c:url value='/staff/createclass'/>"><i
+					<li><a href="<c:url value='/staff/edit'/>"><i
 							class="fas fa-user-graduate"></i> Create Class</a></li>
 				</ul></li>
 			<li><a href="<c:url value='#'/>"><i class="fas fa-calendar-day"></i>

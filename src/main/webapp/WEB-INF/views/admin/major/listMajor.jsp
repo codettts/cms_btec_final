@@ -19,6 +19,7 @@
 				</button>
 			</div>
 			<div id="major-list" class="tab-content major-list">
+			<form action="<c:url value='/admin/major-manage'/>" id="formSubmit" method="get">
 				<div class="row place-list">
 					<c:forEach var="majorlist" items="${model.listResult}">
 						<div class="col col-two s-col-full mt-16">
@@ -41,6 +42,7 @@
 				<ul class="pagination" id="pagination"></ul>	
 				<input type="hidden" value="" id="page" name="page"/>
 				<input type="hidden" value="" id="limit" name="limit"/>
+				</form>
 			</div>
 		</div>
 		<div id="sidebar">

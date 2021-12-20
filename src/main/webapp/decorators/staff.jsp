@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="google-signin-client_id" content="262933892162-f7bk4h6fh8hljn32nlpre1i71h7hm0e1.apps.googleusercontent.com" />
 <!-- link header -->
+<link rel="stylesheet"href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet" href="<c:url value='/template/assets/css/main.css' />" />
 <link rel="stylesheet" href="<c:url value='/template/assets/css/upcoming-events.css' />" />
 <link rel="stylesheet" href="<c:url value='/template/assets/css/search-nav.css' />" />
@@ -70,6 +72,7 @@
 	<dec:body/>
 	
 	<%@ include file = "/common/staff/footer.jsp" %>
+	    <script src="<c:url value='/template/assets/js/paging.js' />"></script>
 	<script src="<c:url value='/template/assets/js/pagination-demo.js' />"></script>
 	<script src="<c:url value='/template/assets/js/jquery.twbsPagination.js' />"></script>
 	<script src="<c:url value='/template/assets/js/jquery.twbsPagination.min.js' />"></script>

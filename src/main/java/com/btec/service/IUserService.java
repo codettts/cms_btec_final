@@ -15,5 +15,6 @@ public interface IUserService {
 	List<UserDTO> findAll(Pageable pageable);
 	int getTotalItem();
 	UserDTO save(UserDTO dto);
-//	void delete(String username);
+	List<UserDTO> findAll();
+	boolean delete(String usernames);
 }

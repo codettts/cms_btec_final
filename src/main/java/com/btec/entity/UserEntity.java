@@ -3,7 +3,9 @@ package com.btec.entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +30,25 @@ public class UserEntity extends BaseEntity {
 
 	@Column(name = "fullName")
 	private String fullName;
-
+	
+	@Column(name = "gender", columnDefinition="char(1)")
+	private String gender;
+	
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "dob")
 	private Date dob;
+	
+	@Column(name = "country")
+	private String country;
 
+	@Column(name = "role")
+	private String role;
+	
+	@Column(name = "avatar")
+	private String avatar;
+	
 	@Column(name = "status")
 	private Integer status;
 
@@ -44,16 +58,16 @@ public class UserEntity extends BaseEntity {
 	
 	@ManyToMany
 	@JoinTable(name = "user_class", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "classId"))
-	private List<ClassEntity> classuser = new ArrayList<>();
+	private Set<ClassEntity> classuser = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user")
 	private List<SubasmEntity> subasmuser = new ArrayList<>();
-		
-	public List<ClassEntity> getClassuser() {
+	
+	public Set<ClassEntity> getClassuser() {
 		return classuser;
 	}
 
-	public void setClassuser(List<ClassEntity> classuser) {
+	public void setClassuser(Set<ClassEntity> classuser) {
 		this.classuser = classuser;
 	}
 
@@ -127,6 +141,38 @@ public class UserEntity extends BaseEntity {
 
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 }

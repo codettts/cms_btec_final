@@ -5,7 +5,7 @@
 <div id="container">
 	<div id="top">
 		<div class="header-logo">
-			<a href="trainer-index.html"><img class="img-logo"
+			<a href="/staff/home"><img class="img-logo"
 				src="<c:url value='/template/assets/images/logo.png' />" alt="" /></a>
 		</div>
 		<div class="header-user">

@@ -8,4 +8,5 @@ import com.btec.entity.ClassEntity;
 
 public interface ClassRepository extends JpaRepository<ClassEntity, Long> {
 	ClassEntity findOneByclassId(Long classId);
+	ClassEntity findByClassId(Long classId);
 }

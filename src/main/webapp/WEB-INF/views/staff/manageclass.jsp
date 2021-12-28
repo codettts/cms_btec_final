@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
+<form action="<c:url value='/staff/manageclass'/>" method="get" id="formSubmit">
 <div id="content">
 	<div id="breadcrumbs">
 		<ul class="breadcrumb">
@@ -15,6 +16,7 @@
 					onclick="openTab(event,'Class-Overview')">My Class</button>
 			</div>
 			<div id="Class-Overview" class="tab-content class-overview">
+<<<<<<< HEAD
 				<form action="<c:url value='/staff/manageclass'/>" id="formSubmit"
 					method="get">
 					<div class="row place-list">
@@ -39,6 +41,26 @@
 						<input type="hidden" value="" id="limit" name="limit" />
 					</div>
 				</form>
+=======
+				<div class="row place-list">
+				<c:forEach var="classlist" items="${model.listResult}">
+					<div class="col col-two s-col-full mt-16">
+						<img src="<c:url value='/template/assets/images/p3.jpg' />" alt="" class="place-img" />
+						<div class="place-body">
+							<h3 class="place-heading">${classlist.className}</h3>
+							<c:url var="classoverviewURL" value='/staff/manageclass/class-detail'>
+								<c:param name="classId" value="${classlist.classId}"/>
+							</c:url>
+							<a href="${classoverviewURL}"
+								class="place-buy-btn js-buy-ticket s-full-width">View</a>
+						</div>
+					</div>
+					</c:forEach>
+				</div>
+				<ul class="pagination" id="pagination"></ul>
+				<input type="hidden" value="" id="page" name="page"/>
+				<input type="hidden" value="" id="limit" name="limit"/>
+>>>>>>> d33873fcb3a395b3f537cd04261aedef2cd8d536
 			</div>
 		</div>
 		<div id="sidebar">
@@ -115,6 +137,10 @@
 		</div>
 	</div>
 </div>
+<<<<<<< HEAD
+=======
+</form>
+>>>>>>> d33873fcb3a395b3f537cd04261aedef2cd8d536
 <script>
 var totalPages = ${model.totalPage};
 var currentPage = ${model.page};
@@ -125,7 +151,11 @@ $(function() {
 		startPage : currentPage,
 		onPageClick : function(event, page) {
 			if (currentPage != page) {
+<<<<<<< HEAD
 				$('#limit').val(4);
+=======
+				$('#limit').val(6);
+>>>>>>> d33873fcb3a395b3f537cd04261aedef2cd8d536
 				$('#page').val(page);
 				$('#formSubmit').submit();
 			}

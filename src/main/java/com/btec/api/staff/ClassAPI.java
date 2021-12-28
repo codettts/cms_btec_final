@@ -25,8 +25,15 @@ public class ClassAPI {
 	public ClassDTO editClass(@RequestBody ClassDTO editclassDTO) {
 		return classService.save(editclassDTO);
 	}
+<<<<<<< HEAD
 	@DeleteMapping("/api/class")
 	public void deleteClass(@RequestBody long[] classIds) {
 		classService.delete(classIds);
+=======
+	
+	@DeleteMapping("/api/class")
+	public void deleteAsm(@RequestBody long[] classId) {
+		classService.delete(classId);
+>>>>>>> d33873fcb3a395b3f537cd04261aedef2cd8d536
 	}
 }

@@ -36,7 +36,11 @@ public class ClassController {
 	@Autowired
 	private IContentService contentService;
 	
+<<<<<<< HEAD
 	@RequestMapping(value = "/staff/edit", method = RequestMethod.GET)
+=======
+	@RequestMapping(value = {"/staff/createclass","/staff/manageclass/class-detail"}, method = RequestMethod.GET)
+>>>>>>> d33873fcb3a395b3f537cd04261aedef2cd8d536
 	public ModelAndView addClass(@RequestParam(value = "classId", required = false) Long classId, HttpServletRequest request) {
 		ModelAndView mav;
 		ClassDTO classmodel = new ClassDTO();

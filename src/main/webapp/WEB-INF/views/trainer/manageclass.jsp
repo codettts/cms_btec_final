@@ -4,7 +4,7 @@
 <div id="content">
 	<div id="breadcrumbs">
 		<ul class="breadcrumb">
-			<li><a href="trainer-index.html">Home</a></li>
+			<li><a href="/trainer/home">Home</a></li>
 			<li>Manage Class</li>
 		</ul>
 	</div>

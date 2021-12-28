@@ -2,10 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <%@ page import="com.btec.util.SecurityUtils" %>
+<<<<<<< HEAD
 <c:url var="manageclassURL" value="/trainer/manageclass?page=1&limit=4" />
 <c:url var="homeURL" value="/trainer/home" />
+=======
+<c:url var="manageclassURL" value="/trainer/manageclass?page=1&limit=4"/>
+<c:url var="homeURL" value="/trainer/home"/>
+>>>>>>> d33873fcb3a395b3f537cd04261aedef2cd8d536
 <c:url var="editpassURL" value="/trainer/classoverview/editpass">
-	<c:param name="classId" value="${classinfo.classId}" />
+	<c:param name="classId" value="${classinfo.classId}"/>
+</c:url>
+<c:url var="mngtraineeURL" value="/trainer/manage-trainee">
+	<c:param name="classId" value="${classinfo.classId}"/>
+	<c:param name="username" value="<%=SecurityUtils.getPrincipal().getUsername()%>"/>
+</c:url>
+<c:url var="createAsmURL" value="/trainer/classoverview/edit">
+	<c:param name="classId" value="${classinfo.classId}"/>
 </c:url>
 <c:url var="mngtraineeURL" value="/trainer/manage-trainee">
 	<c:param name="classId" value="${classinfo.classId}"/>
@@ -31,21 +43,18 @@
 				<div class="alert alert-${alert}">
 					<strong>${message}!</strong>
 				</div>
-			</c:if>
+	      	</c:if>
 			<div id="main-content">
 				<div class="right-content">
 					<div class="nav-tab">
-						<c:url var="createAsmURL" value="/trainer/classoverview/edit" />
 						<button class="btn tablink first-tab"
-							onclick="openTab(event,'Class-Overview')">Class Overview</button>
+							onclick="openTab(event,'Class-Overview')"><a href="${editpassURL}">Class Overview</button>
 						<button class="btn tablink"
 							onclick="openTab(event, 'Create-Assignment')">
 							<a href='${createAsmURL}'>Create Assignment</a>
 						</button>
 						<button class="btn tablink"
-							onclick="openTab(event, 'Create-Code')">
-							<a href="${editpassURL}">Edit Code</a>
-						</button>
+							onclick="openTab(event, 'Create-Code')"><a href="${editpassURL}">Edit Code</a></button>
 						<button class="btn tablink"
 							onclick="openTab(event, 'Manage-Student')"><a href="${mngtraineeURL}">Manage
 							Student</a></button>
@@ -61,13 +70,9 @@
 						<c:forEach var="item" items="${model.listResult}">
 							<div class="topic">
 								<h1 class="topic-title">Topic 1</h1>
-								<c:url var="contentdetailURL"
-									value="/trainer/classoverview/edit">
-									<c:param name="asmId" value="${item.asmId}" />
-								</c:url>
 								<div class="topic-content">
 									<ul>
-										<a href="${contentdetailURL}"><i class="fas fa-file-alt"></i><span>${item.asmName}</span></a>
+										<a href="/trainer/classoverview/edit?classId=${classinfo.classId}&asmId=${item.asmId}"><i class="fas fa-file-alt"></i><span>${item.asmName}</span></a>
 									</ul>
 								</div>
 							</div>
@@ -77,7 +82,7 @@
 							<input type="hidden" value="" id="page" name="page" /> <input
 								type="hidden" value="" id="limit" name="limit" />
 						</div>
-					</div>
+					</div>			
 					<div id="Manage-Student" class="tab-content" style="display: none">
 						<div class="table-wrapper">
 							<div class="table-title">
@@ -95,36 +100,98 @@
 								<table class="table table-striped table-hover .w-auto">
 									<thead>
 										<tr>
-											<th>UserName</th>
-											<th>FullName</th>
+											<th>ID</th>
+											<th>Name</th>
 											<th>DOB</th>
 											<th>Email</th>
 											<th>Phone</th>
-											<th>Password</th>
+											<th>Class</th>
 											<th>Subject</th>
 											<th>Grade</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="item" items="${model.listResult}">
-											<tr>
-												<td>1</td>
-												<td>Dany Lo</td>
-												<td>15/01/1999</td>
-												<td>danybhaf188797@fpt.edu.vn</td>
-												<td>0966686371</td>
-												<td>BHAF-1911-2.2</td>
-												<td>Programming</td>
-												<td>8.0</td>
-												<td><a href="#editEmployeeModal" class="edit"
-													data-toggle="modal"><i class="material-icons"
-														data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-													href="#deleteEmployeeModal" class="delete"
-													data-toggle="modal"><i class="material-icons"
-														data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
-											</tr>
-										</c:forEach>
+										<tr>
+											<td>1</td>
+											<td>Dany Lo</td>
+											<td>15/01/1999</td>
+											<td>danybhaf188797@fpt.edu.vn</td>
+											<td>0966686371</td>
+											<td>BHAF-1911-2.2</td>
+											<td>Programming</td>
+											<td>8.0</td>
+											<td><a href="#editEmployeeModal" class="edit"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+												href="#deleteEmployeeModal" class="delete"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Nguyen Dinh Thanh</td>
+											<td>17/05/2000</td>
+											<td>thanhndbhaf188797@fpt.edu.vn</td>
+											<td>0966686371</td>
+											<td>BHAF-1911-2.2</td>
+											<td>Programming</td>
+											<td>8.0</td>
+											<td><a href="#editEmployeeModal" class="edit"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+												href="#deleteEmployeeModal" class="delete"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Le Ngoc Minh</td>
+											<td>15/01/2001</td>
+											<td>minhlnbhaf188797@fpt.edu.vn</td>
+											<td>0966686371</td>
+											<td>BHAF-1911-2.2</td>
+											<td>Programming</td>
+											<td>6.0</td>
+											<td><a href="#editEmployeeModal" class="edit"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+												href="#deleteEmployeeModal" class="delete"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>Dany Lo</td>
+											<td>15/01/1999</td>
+											<td>danybhaf188797@fpt.edu.vn</td>
+											<td>0966686371</td>
+											<td>BHAF-1911-2.2</td>
+											<td>Programming</td>
+											<td>8.0</td>
+											<td><a href="#editEmployeeModal" class="edit"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+												href="#deleteEmployeeModal" class="delete"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>Do Minh Ngoc</td>
+											<td>27/07/1998</td>
+											<td>ngocdmbhaf188797@fpt.edu.vn</td>
+											<td>0966686371</td>
+											<td>BHAF-1911-2.2</td>
+											<td>Programming</td>
+											<td>6.0</td>
+											<td><a href="#editEmployeeModal" class="edit"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
+												href="#deleteEmployeeModal" class="delete"
+												data-toggle="modal"><i class="material-icons"
+													data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+										</tr>
 									</tbody>
 								</table>
 							</div>

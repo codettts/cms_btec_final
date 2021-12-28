@@ -1,8 +1,11 @@
 package com.btec.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,17 +40,17 @@ public class ClassEntity extends BaseEntity {
     @JoinColumn(name = "contentId")
     private ContentEntity content;
 	
-	@ManyToMany(mappedBy = "classuser")
-    private List<UserEntity> userclass = new ArrayList<>();
+	@ManyToMany(mappedBy = "classuser", cascade = CascadeType.PERSIST)
+    private Set<UserEntity> userclass = new HashSet<>();
 	
 	@OneToMany(mappedBy = "classs")
 	private List<AsmEntity> asms = new ArrayList<>();
 
-	public List<UserEntity> getUserclass() {
+	public Set<UserEntity> getUserclass() {
 		return userclass;
 	}
 
-	public void setUserclass(List<UserEntity> userclass) {
+	public void setUserclass(Set<UserEntity> userclass) {
 		this.userclass = userclass;
 	}
 

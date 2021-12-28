@@ -1,66 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="homeURL" value="/admin/home" />
-<c:url var="usermanageURL" value="admin/user-manage?page=1&limit=6" />
+<c:url var="homeURL" value="/staff/home" />
+<c:url var="staffmanageURL" value="staff/manageclass?page=1&limit=6" />
 <!-- Start Main Content -->
 <div id="content">
 	<div id="breadcrumbs">
 		<ul class="breadcrumb">
-			<li><a href="home">Home</a></li>
-			<li>Manage Account</a></li>
+			<li><a href="homeURL">Home</a></li>
+			<li>Manage Class</a></li>
 		</ul>
 	</div>
 	<div id="main-content">
 		<div class="container-content">
 			<div class="table-wrapper">
-			<form action="<c:url value='/admin/user-manage'/>" id="formSubmit" method="get">
+			<form action="<c:url value='/staff/manageclass'/>" id="formSubmit" method="get">
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="nav-tab">
 								<button class="btn tablink first-tab"
-									onclick="openTab(event,'Account-list')">Account List</button>
-								<c:url var="editNewURL" value="/admin/user-manage/edit" />
+									onclick="openTab(event,'Class-list')">Class List</button>
+								<c:url var="editNewURL" value="/staff/edit" />
 								<button class="btn tablink"
 									onclick="openTab(event, 'Create-Account')">
-									<a href='${editNewURL}'>Create Account</a>
+									<a href='${editNewURL}'>Create Class</a>
 								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="table-content">
-					<table class="table table-striped table-hover .w-auto">
+				<br>
+				<input id="myInput" type="text" placeholder="Search..">
+                 <br><br>
+					<table id="example" class="table table-striped table-bordered" style="width:100%">
 						<thead>
 							<tr>
-								<th>UserName</th>
-								<th>FullName</th>
-								<th>Created By</th>
-								<th>Created Date</th>
+								<th>ClassName</th>
+								<th>Password</th>
 								<th>Modified By</th>
 								<th>Modified Date</th>
-								<th>DOB</th>
-								<th>Email</th>
-								<th>Phone</th>
+								<th>Created By</th>
+								<th>Created Date</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="myTable">
 							<c:forEach var="item" items="${model.listResult}">
 								<tr>
-									<td>${item.username}</td>
-									<td>${item.fullName}</td>
+									<td>${item.className}</td>
+									<td>${item.password}</td>
 									<td>${item.modifiedBy}</td>
 									<td>${item.modifiedDate}</td>
 									<td>${item.createdBy}</td>
 									<td>${item.createdDate}</td>
-									<td>${item.dob}</td>
-									<td>${item.email}</td>
-									<td>${item.phoneNumber}</td>
 									<td>
-									<c:url var="editNewURL" value='/admin/user-manage/edit'>
-									<c:param name="username" value="${item.username}" />
+									<c:url var="editNewURL" value='/staff/edit'>
+									<c:param name="classId" value="${item.classId}" />
 								</c:url>
 								<a href="${editNewURL}">View</a>
 									</td>
@@ -183,11 +180,21 @@ $(function() {
 		startPage : currentPage,
 		onPageClick : function(event, page) {
 			if (currentPage != page) {
-				$('#limit').val(6);
+				$('#limit').val(4);
 				$('#page').val(page);
 				$('#formSubmit').submit();
 			}
 		}
 	});
+});
+</script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 });
 </script>

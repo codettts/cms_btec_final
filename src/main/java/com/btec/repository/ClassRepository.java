@@ -1,5 +1,7 @@
 package com.btec.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.btec.entity.ClassEntity;

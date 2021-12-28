@@ -16,5 +16,5 @@
 	<div class="clear"></div>
 </div>
 <div class="wrapper15">
-	<ul class="paginationa" id="paginationa"></ul>
+	<ul class="pagination" id="pagination"></ul>
 </div>

@@ -1,5 +1,7 @@
 package com.btec.entity;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,11 +20,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class BaseEntity {
 	@Column(name = "createddate")
 	@CreatedDate
-	private Date createdDate;
+	private LocalDateTime createdDate;
 	
 	@Column(name = "modifieddate")
 	@LastModifiedDate
-	private Date modifiedDate;
+	private LocalDateTime modifiedDate;
 	
 	@Column(name = "createdby")
 	@CreatedBy
@@ -31,13 +33,31 @@ public abstract class BaseEntity {
 	@Column(name = "modifiedby")
 	@LastModifiedBy
 	private String modifiedBy;
+	
+	
 
-	public Date getCreatedDate() {
+//	public Date getCreatedDate() {
+//		return createdDate;
+//	}
+//
+//	public Date getModifiedDate() {
+//		return modifiedDate;
+//	}
+
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public Date getModifiedDate() {
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
+	}
+
+	public void setModifiedDate(LocalDateTime modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
 	public String getCreatedBy() {
@@ -46,5 +66,21 @@ public abstract class BaseEntity {
 
 	public String getModifiedBy() {
 		return modifiedBy;
+	}
+
+//	public void setCreatedDate(Date createdDate) {
+//		this.createdDate = createdDate;
+//	}
+//
+//	public void setModifiedDate(Date modifiedDate) {
+//		this.modifiedDate = modifiedDate;
+//	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
 	}
 }

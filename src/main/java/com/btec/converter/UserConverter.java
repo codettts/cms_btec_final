@@ -13,6 +13,10 @@ public class UserConverter {
 		result.setUsername(entity.getUsername());
 		result.setPassword(entity.getPassword());
 		result.setFullName(entity.getFullName());
+		result.setModifiedBy(entity.getModifiedBy());
+		result.setModifiedDate(entity.getModifiedDate());
+		result.setCreatedBy(entity.getCreatedBy());
+		result.setCreatedDate(entity.getCreatedDate());
 		result.setDob(entity.getDob());
 		result.setEmail(entity.getEmail());
 		result.setPhoneNumber(entity.getPhoneNumber());
@@ -24,6 +28,10 @@ public class UserConverter {
 		result.setUsername(dto.getUsername());
 		result.setPassword(dto.getPassword());
 		result.setFullName(dto.getFullName());
+		result.setModifiedBy(dto.getModifiedBy());
+		result.setModifiedDate(dto.getModifiedDate());
+		result.setCreatedBy(dto.getCreatedBy());
+		result.setCreatedDate(dto.getCreatedDate());
 		result.setDob(dto.getDob());
 		result.setEmail(dto.getEmail());
 		result.setPhoneNumber(dto.getPhoneNumber());
@@ -33,6 +41,10 @@ public class UserConverter {
 	public UserEntity toEntity(UserEntity result, UserDTO dto) {
 		result.setPassword(dto.getPassword());
 		result.setFullName(dto.getFullName());
+		result.setModifiedBy(dto.getModifiedBy());
+		result.setModifiedDate(dto.getModifiedDate());
+		result.setCreatedBy(dto.getCreatedBy());
+		result.setCreatedDate(dto.getCreatedDate());
 		result.setDob(dto.getDob());
 		result.setEmail(dto.getEmail());
 		result.setPhoneNumber(dto.getPhoneNumber());

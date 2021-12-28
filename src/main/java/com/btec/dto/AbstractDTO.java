@@ -1,11 +1,12 @@
 package com.btec.dto;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 public class AbstractDTO<T> {
-	private Timestamp createdDate;
-	private Timestamp modifiedDate;
+	private LocalDateTime createdDate;
+	private LocalDateTime modifiedDate;
 	private String createdBy;
 	private String modifiedBy;
 	private long[] ids;
@@ -19,20 +20,33 @@ public class AbstractDTO<T> {
 	private String alert;
 	private String message;
 	private String type;
-	public Timestamp getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Timestamp createdDate) {
-		this.createdDate = createdDate;
-	}
-	public Timestamp getModifiedDate() {
-		return modifiedDate;
-	}
-	public void setModifiedDate(Timestamp modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
+//	public Timestamp getCreatedDate() {
+//		return createdDate;
+//	}
+//	public void setCreatedDate(Timestamp createdDate) {
+//		this.createdDate = createdDate;
+//	}
+//	public Timestamp getModifiedDate() {
+//		return modifiedDate;
+//	}
+//	public void setModifiedDate(Timestamp modifiedDate) {
+//		this.modifiedDate = modifiedDate;
+//	}
+	
 	public String getCreatedBy() {
 		return createdBy;
+	}
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+	public LocalDateTime getModifiedDate() {
+		return modifiedDate;
+	}
+	public void setModifiedDate(LocalDateTime modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;

@@ -23,8 +23,9 @@
 							alt="" /> <span class="btn-user-element"><%=SecurityUtils.getPrincipal().getFullName()%></span> <i
 							class="fas fa-chevron-down btn-user-element"></i>
 					</button>
+					<c:url var="updateProfileURL" value="<%=SecurityUtils.getPrincipal().getUsername()%>"/>
 					<div id="drop" class="header-sub-nav">
-						<a href="update-profile.html"><i class="fas fa-user-cog"></i>
+						<a href="${updateProfileURL}"><i class="fas fa-user-cog"></i>
 							<span>Settings</span></a> <a href="<c:url value='/logout'/>"><i
 							class="fas fa-sign-out-alt"></i> <span>Log out</span></a>
 					</div>
@@ -71,4 +72,5 @@
 			</form>
 		</div>
 	</div>
+</div>
 	<!-- End Navigation -->

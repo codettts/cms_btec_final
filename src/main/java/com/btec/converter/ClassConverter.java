@@ -1,7 +1,7 @@
 package com.btec.converter;
 
+//import java.sql.Timestamp;
 import org.springframework.stereotype.Component;
-
 import com.btec.dto.ClassDTO;
 import com.btec.entity.ClassEntity;
 
@@ -16,7 +16,11 @@ public class ClassConverter {
 		result.setPassword(entity.getPassword());
 		result.setSubjectId(entity.getSubject().getSubjectId());
 		result.setContentId(entity.getContent().getContentId());
-		
+		result.setContentLink(entity.getContent().getLink());
+		result.setModifiedBy(entity.getModifiedBy());
+		result.setModifiedDate(entity.getModifiedDate());
+		result.setCreatedBy(entity.getCreatedBy());
+		result.setCreatedDate(entity.getCreatedDate());
 		return result;
 	}
 	
@@ -24,12 +28,20 @@ public class ClassConverter {
 		ClassEntity result = new ClassEntity();
 		result.setClassName(dto.getClassName());
 		result.setPassword(dto.getPassword());
+		result.setModifiedBy(dto.getModifiedBy());
+		result.setModifiedDate(dto.getModifiedDate());
+		result.setCreatedBy(dto.getCreatedBy());
+		result.setCreatedDate(dto.getCreatedDate());
 		return result;
 	}
 	
 	public ClassEntity toEntity(ClassEntity result, ClassDTO dto) {
 		result.setClassName(dto.getClassName());
 		result.setPassword(dto.getPassword());
+		result.setModifiedBy(dto.getModifiedBy());
+		result.setModifiedDate(dto.getModifiedDate());
+		result.setCreatedBy(dto.getCreatedBy());
+		result.setCreatedDate(dto.getCreatedDate());
 		return result;
 	}
 	

@@ -5,6 +5,13 @@ public class ClassDTO extends AbstractDTO<ClassDTO> {
 	private String className;
 	private String password;
 	private Long contentId;
+	private String contentLink;
+	public String getContentLink() {
+		return contentLink;
+	}
+	public void setContentLink(String contentLink) {
+		this.contentLink = contentLink;
+	}
 	private String username;
 	private Long subjectId;
 	
